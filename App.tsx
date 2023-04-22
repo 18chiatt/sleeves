@@ -102,15 +102,13 @@ function Games() {
 
 function GameEntry(props) {
 	const { title, setId, count, distinctSizes, last } = props;
-	const validSizes = (distinctSizes as string[]).reduce((prev, curr) => (SKU_MAP.get(curr) ? prev + 1 : prev), 0);
-	const invalidSizes = distinctSizes.length - validSizes;
 	return (
 		<Card
 			style={{ marginTop: 10, marginHorizontal: 5, marginBottom: last ? 300 : 5 }}
 			onPress={() => setId(title)}
 			elevation={2}
 		>
-			<Card.Title title={title} titleNumberOfLines={3} subtitle={`Total Cards: ${count}`} />
+			<Card.Title title={title} titleNumberOfLines={3} subtitle={isNaN(count) ? "" : `Total Cards: ${count}`} />
 		</Card>
 	);
 }
